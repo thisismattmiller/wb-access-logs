@@ -241,7 +241,13 @@ def analyze_gptbot_log(log_file, output_file='gptbot_url_analysis.json'):
     return output
 
 if __name__ == '__main__':
-    log_file = sys.argv[1] if len(sys.argv) > 1 else 'GPTBot_access_log'
-    output_file = sys.argv[2] if len(sys.argv) > 2 else 'gptbot_url_analysis.json'
+    import os
+    # Default paths relative to scripts/ directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    default_input = os.path.join(script_dir, '..', 'data', 'GPTBot_access_log')
+    default_output = os.path.join(script_dir, '..', 'data', 'gptbot_url_analysis.json')
+
+    log_file = sys.argv[1] if len(sys.argv) > 1 else default_input
+    output_file = sys.argv[2] if len(sys.argv) > 2 else default_output
 
     analyze_gptbot_log(log_file, output_file)

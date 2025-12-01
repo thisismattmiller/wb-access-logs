@@ -238,7 +238,11 @@ def analyze_logs(log_dir):
     print("=" * 80)
 
 if __name__ == '__main__':
-    log_directory = sys.argv[1] if len(sys.argv) > 1 else 'access_logs'
+    # Default paths relative to scripts/ directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    default_log_dir = os.path.join(script_dir, '..', 'access_logs')
+
+    log_directory = sys.argv[1] if len(sys.argv) > 1 else default_log_dir
 
     if not os.path.isdir(log_directory):
         print(f"Error: Directory '{log_directory}' not found")

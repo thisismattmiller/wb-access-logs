@@ -60,8 +60,13 @@ function getCountryName(code) {
 async function main() {
     const geoip = require('fast-geoip');
 
-    const inputFile = process.argv[2] || 'bot_summary.json';
-    const outputFile = process.argv[3] || 'bot_summary_geo.json';
+    // Default paths relative to scripts/ directory
+    const scriptDir = path.dirname(require.main.filename);
+    const defaultInput = path.join(scriptDir, '..', 'data', 'bot_summary.json');
+    const defaultOutput = path.join(scriptDir, '..', 'data', 'bot_summary_geo.json');
+
+    const inputFile = process.argv[2] || defaultInput;
+    const outputFile = process.argv[3] || defaultOutput;
 
     console.log(`Loading ${inputFile}...`);
 

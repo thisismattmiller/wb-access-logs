@@ -167,8 +167,13 @@ async function processLogFile(filePath, geoip, ipCache, minuteData, countryTotal
 async function main() {
     const geoip = require('fast-geoip');
 
-    const logDir = process.argv[2] || 'access_logs';
-    const outputFile = process.argv[3] || 'traffic_per_minute_geo.json';
+    // Default paths relative to scripts/ directory
+    const scriptDir = path.dirname(require.main.filename);
+    const defaultLogDir = path.join(scriptDir, '..', 'access_logs');
+    const defaultOutput = path.join(scriptDir, '..', 'data', 'traffic_per_minute_geo.json');
+
+    const logDir = process.argv[2] || defaultLogDir;
+    const outputFile = process.argv[3] || defaultOutput;
 
     console.log(`Scanning ${logDir} for log files...`);
 

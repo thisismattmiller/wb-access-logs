@@ -250,7 +250,13 @@ const getTotal = (i) => data.d[i][1] + data.d[i][2];
 """)
 
 if __name__ == '__main__':
-    log_directory = sys.argv[1] if len(sys.argv) > 1 else 'access_logs'
-    output_file = sys.argv[2] if len(sys.argv) > 2 else 'bot_vs_browser.json'
+    import os
+    # Default paths relative to scripts/ directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    default_log_dir = os.path.join(script_dir, '..', 'access_logs')
+    default_output = os.path.join(script_dir, '..', 'data', 'bot_vs_browser.json')
+
+    log_directory = sys.argv[1] if len(sys.argv) > 1 else default_log_dir
+    output_file = sys.argv[2] if len(sys.argv) > 2 else default_output
 
     analyze_bot_vs_browser(log_directory, output_file)

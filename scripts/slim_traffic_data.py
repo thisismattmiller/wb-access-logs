@@ -186,8 +186,14 @@ function getCountryName(code) {
 """)
 
 if __name__ == '__main__':
-    input_file = sys.argv[1] if len(sys.argv) > 1 else 'traffic_per_minute_geo.json'
-    output_file = sys.argv[2] if len(sys.argv) > 2 else 'traffic_slim.json'
+    import os
+    # Default paths relative to scripts/ directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    default_input = os.path.join(script_dir, '..', 'data', 'traffic_per_minute_geo.json')
+    default_output = os.path.join(script_dir, '..', 'data', 'traffic_slim.json')
+
+    input_file = sys.argv[1] if len(sys.argv) > 1 else default_input
+    output_file = sys.argv[2] if len(sys.argv) > 2 else default_output
     top_countries = int(sys.argv[3]) if len(sys.argv) > 3 else 5
 
     slim_traffic_data(input_file, output_file, top_countries)

@@ -189,8 +189,13 @@ def analyze_traffic(log_dir, output_file='traffic_per_minute.json'):
         print(f"  {status}: {count:>12,} ({pct:>5.1f}%)")
 
 if __name__ == '__main__':
-    log_directory = sys.argv[1] if len(sys.argv) > 1 else 'access_logs'
-    output_file = sys.argv[2] if len(sys.argv) > 2 else 'traffic_per_minute.json'
+    # Default paths relative to scripts/ directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    default_log_dir = os.path.join(script_dir, '..', 'access_logs')
+    default_output = os.path.join(script_dir, '..', 'data', 'traffic_per_minute.json')
+
+    log_directory = sys.argv[1] if len(sys.argv) > 1 else default_log_dir
+    output_file = sys.argv[2] if len(sys.argv) > 2 else default_output
 
     if not os.path.isdir(log_directory):
         print(f"Error: Directory '{log_directory}' not found")

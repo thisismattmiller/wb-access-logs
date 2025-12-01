@@ -411,7 +411,8 @@ def analyze_bots(log_dir, output_file='bot_paths.json'):
     print(f"File size: {os.path.getsize(output_file) / (1024*1024):.2f} MB")
 
     # Also export a smaller summary file
-    summary_file = 'bot_summary.json'
+    output_dir = os.path.dirname(output_file)
+    summary_file = os.path.join(output_dir, 'bot_summary.json') if output_dir else 'bot_summary.json'
     summary_only = {
         'metadata': export_data['metadata'],
         'bot_summary': summary_export,
@@ -436,8 +437,13 @@ def analyze_bots(log_dir, output_file='bot_paths.json'):
     print("=" * 80)
 
 if __name__ == '__main__':
-    log_directory = sys.argv[1] if len(sys.argv) > 1 else 'access_logs'
-    output_file = sys.argv[2] if len(sys.argv) > 2 else 'bot_paths.json'
+    # Default paths relative to scripts/ directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    default_log_dir = os.path.join(script_dir, '..', 'access_logs')
+    default_output = os.path.join(script_dir, '..', 'data', 'bot_paths.json')
+
+    log_directory = sys.argv[1] if len(sys.argv) > 1 else default_log_dir
+    output_file = sys.argv[2] if len(sys.argv) > 2 else default_output
 
     if not os.path.isdir(log_directory):
         print(f"Error: Directory '{log_directory}' not found")
