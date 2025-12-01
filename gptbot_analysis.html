@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPTBot Traffic Analysis</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1a1a1a;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e5e5e5;
+    }
+    h3 {
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #444;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+    }
+    .stat-card .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
+    }
+    .stat-card .value {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    .stat-card .detail {
+      font-size: 0.8rem;
+      color: #888;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    th {
+      background: #f8f9fa;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
+    }
+    td.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    tr:hover {
+      background: #fafafa;
+    }
+    .bar-container {
+      width: 100%;
+      height: 24px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .bar {
+      height: 100%;
+      display: flex;
+    }
+    .bar-segment {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: white;
+      font-weight: 500;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+    }
+    .subcategory {
+      padding-left: 1.5rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .sample-urls {
+      background: #f8f9fa;
+      padding: 0.75rem;
+      border-radius: 6px;
+      font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+      font-size: 0.75rem;
+      overflow-x: auto;
+      margin-top: 0.5rem;
+    }
+    .sample-urls li {
+      margin-bottom: 0.25rem;
+      word-break: break-all;
+    }
+    .chart-container {
+      margin: 1.5rem 0;
+    }
+    .hourly-chart {
+      display: flex;
+      align-items: flex-end;
+      height: 120px;
+      gap: 2px;
+      padding: 0.5rem 0;
+    }
+    .hourly-bar {
+      flex: 1;
+      background: #3b82f6;
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      min-width: 0;
+    }
+    .hourly-bar:hover {
+      background: #2563eb;
+    }
+    .hourly-labels {
+      display: flex;
+      gap: 2px;
+      font-size: 0.65rem;
+      color: #888;
+    }
+    .hourly-labels span {
+      flex: 1;
+      text-align: center;
+    }
+    .status-pill {
+      display: inline-block;
+      padding: 0.125rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .status-2xx { background: #dcfce7; color: #166534; }
+    .status-3xx { background: #dbeafe; color: #1e40af; }
+    .status-4xx { background: #fef3c7; color: #92400e; }
+    .status-5xx { background: #fee2e2; color: #991b1b; }
+    .highlight {
+      background: #fef3c7;
+      padding: 0.125rem 0.25rem;
+      border-radius: 3px;
+    }
+    .insight {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .insight-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>GPTBot URL Analysis</h1>
+  <p class="subtitle">What is OpenAI's GPTBot crawling on our Wikibase instance?</p>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="label">Total Requests</div>
+      <div class="value">677,400</div>
+      <div class="detail">Over 14 days</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Data Transferred</div>
+      <div class="value">7.1 GB</div>
+      <div class="detail">~10.4 KB avg per request</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Unique Items</div>
+      <div class="value">10,913</div>
+      <div class="detail">Distinct Q-numbers accessed</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Success Rate</div>
+      <div class="value">83.6%</div>
+      <div class="detail">566,075 successful requests</div>
+    </div>
+  </div>
+
+  <h2>URL Category Breakdown</h2>
+
+  <div class="bar-container">
+    <div class="bar">
+      <div class="bar-segment" style="width: 54.8%; background: #3b82f6;" title="Item pages: 54.8%">Items</div>
+      <div class="bar-segment" style="width: 19.1%; background: #8b5cf6;" title="Special:Log: 19.1%">Logs</div>
+      <div class="bar-segment" style="width: 11.0%; background: #ec4899;" title="Special:WhatLinksHere: 11.0%">Links</div>
+      <div class="bar-segment" style="width: 7.7%; background: #f59e0b;" title="Special:EntityData: 7.7%">Data</div>
+      <div class="bar-segment" style="width: 7.4%; background: #6b7280;" title="Other: 7.4%"></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-color" style="background: #3b82f6;"></div> Item pages (54.8%)</div>
+    <div class="legend-item"><div class="legend-color" style="background: #8b5cf6;"></div> Special:Log (19.1%)</div>
+    <div class="legend-item"><div class="legend-color" style="background: #ec4899;"></div> WhatLinksHere (11.0%)</div>
+    <div class="legend-item"><div class="legend-color" style="background: #f59e0b;"></div> EntityData (7.7%)</div>
+    <div class="legend-item"><div class="legend-color" style="background: #6b7280;"></div> Other (7.4%)</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th class="num">Requests</th>
+        <th class="num">%</th>
+        <th class="num">Data</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Item pages</strong></td>
+        <td class="num">371,006</td>
+        <td class="num">54.8%</td>
+        <td class="num">4.5 GB</td>
+        <td>Viewing/history of Item:Q* pages</td>
+      </tr>
+      <tr>
+        <td><strong>Special:Log</strong></td>
+        <td class="num">129,374</td>
+        <td class="num">19.1%</td>
+        <td class="num">1.7 GB</td>
+        <td>Browsing site activity logs</td>
+      </tr>
+      <tr>
+        <td><strong>Special:WhatLinksHere</strong></td>
+        <td class="num">74,741</td>
+        <td class="num">11.0%</td>
+        <td class="num">477 MB</td>
+        <td>Finding links to items/properties</td>
+      </tr>
+      <tr>
+        <td><strong>Special:EntityData</strong></td>
+        <td class="num">52,453</td>
+        <td class="num">7.7%</td>
+        <td class="num">68 MB</td>
+        <td>Structured data exports (JSON, RDF, etc.)</td>
+      </tr>
+      <tr>
+        <td><strong>Property pages</strong></td>
+        <td class="num">9,402</td>
+        <td class="num">1.4%</td>
+        <td class="num">54 MB</td>
+        <td>Viewing Property:P* definitions</td>
+      </tr>
+      <tr>
+        <td><strong>Item talk pages</strong></td>
+        <td class="num">9,052</td>
+        <td class="num">1.3%</td>
+        <td class="num">18 MB</td>
+        <td>Discussion pages</td>
+      </tr>
+      <tr>
+        <td><strong>Special:UserLogin</strong></td>
+        <td class="num">7,954</td>
+        <td class="num">1.2%</td>
+        <td class="num">32 MB</td>
+        <td>Login page redirects</td>
+      </tr>
+      <tr>
+        <td><strong>Entity redirects</strong></td>
+        <td class="num">6,816</td>
+        <td class="num">1.0%</td>
+        <td class="num">1.7 MB</td>
+        <td>/entity/Q* linked data URLs</td>
+      </tr>
+      <tr>
+        <td><strong>Other</strong></td>
+        <td class="num">16,602</td>
+        <td class="num">2.5%</td>
+        <td class="num">110 MB</td>
+        <td>RecentChanges, NewItem, etc.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <div class="insight-title">Key Finding</div>
+    GPTBot is primarily interested in <strong>item history and relationships</strong>. Over 85% of requests are for viewing items, checking what links to them, or browsing activity logs. It's exploring the knowledge graph structure rather than just fetching raw entity data.
+  </div>
+
+  <h2>EntityData Format Breakdown</h2>
+  <p>When fetching structured entity data, GPTBot requests multiple formats:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Format</th>
+        <th class="num">Requests</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.n3</code></td>
+        <td class="num">11,742</td>
+        <td>Notation3 (RDF)</td>
+      </tr>
+      <tr>
+        <td><code>.rdf</code></td>
+        <td class="num">8,929</td>
+        <td>RDF/XML</td>
+      </tr>
+      <tr>
+        <td><code>.json</code></td>
+        <td class="num">8,726</td>
+        <td>JSON format</td>
+      </tr>
+      <tr>
+        <td><code>.jsonld</code></td>
+        <td class="num">7,424</td>
+        <td>JSON-LD (linked data)</td>
+      </tr>
+      <tr>
+        <td><code>.nt</code></td>
+        <td class="num">7,068</td>
+        <td>N-Triples</td>
+      </tr>
+      <tr>
+        <td><code>.ttl</code></td>
+        <td class="num">1,188</td>
+        <td>Turtle (RDF)</td>
+      </tr>
+      <tr>
+        <td>(default)</td>
+        <td class="num">6,862</td>
+        <td>No extension specified</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>HTTP Status Codes</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th class="num">Count</th>
+        <th class="num">%</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="status-pill status-2xx">200</span></td>
+        <td class="num">566,075</td>
+        <td class="num">83.6%</td>
+        <td>Success</td>
+      </tr>
+      <tr>
+        <td><span class="status-pill status-3xx">301</span></td>
+        <td class="num">74,511</td>
+        <td class="num">11.0%</td>
+        <td>Permanent redirect</td>
+      </tr>
+      <tr>
+        <td><span class="status-pill status-4xx">404</span></td>
+        <td class="num">24,417</td>
+        <td class="num">3.6%</td>
+        <td>Not found</td>
+      </tr>
+      <tr>
+        <td><span class="status-pill status-3xx">303</span></td>
+        <td class="num">6,851</td>
+        <td class="num">1.0%</td>
+        <td>See other (content negotiation)</td>
+      </tr>
+      <tr>
+        <td><span class="status-pill status-3xx">302</span></td>
+        <td class="num">4,618</td>
+        <td class="num">0.7%</td>
+        <td>Temporary redirect</td>
+      </tr>
+      <tr>
+        <td><span class="status-pill status-5xx">5xx</span></td>
+        <td class="num">927</td>
+        <td class="num">0.1%</td>
+        <td>Server errors</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Hourly Distribution (UTC-4)</h2>
+  <p>Request volume by hour of day:</p>
+
+  <div class="chart-container">
+    <div class="hourly-chart">
+      <div class="hourly-bar" style="height: 60.6%" title="00:00 - 22,276"></div>
+      <div class="hourly-bar" style="height: 62.9%" title="01:00 - 23,125"></div>
+      <div class="hourly-bar" style="height: 57.8%" title="02:00 - 21,236"></div>
+      <div class="hourly-bar" style="height: 66.3%" title="03:00 - 24,365"></div>
+      <div class="hourly-bar" style="height: 77.6%" title="04:00 - 28,534"></div>
+      <div class="hourly-bar" style="height: 77.0%" title="05:00 - 28,308"></div>
+      <div class="hourly-bar" style="height: 94.3%" title="06:00 - 34,640"></div>
+      <div class="hourly-bar" style="height: 86.1%" title="07:00 - 31,646"></div>
+      <div class="hourly-bar" style="height: 73.6%" title="08:00 - 27,045"></div>
+      <div class="hourly-bar" style="height: 75.7%" title="09:00 - 27,820"></div>
+      <div class="hourly-bar" style="height: 76.2%" title="10:00 - 27,998"></div>
+      <div class="hourly-bar" style="height: 72.8%" title="11:00 - 26,736"></div>
+      <div class="hourly-bar" style="height: 83.4%" title="12:00 - 30,637"></div>
+      <div class="hourly-bar" style="height: 86.1%" title="13:00 - 31,642"></div>
+      <div class="hourly-bar" style="height: 88.2%" title="14:00 - 32,402"></div>
+      <div class="hourly-bar" style="height: 87.7%" title="15:00 - 32,241"></div>
+      <div class="hourly-bar" style="height: 100%" title="16:00 - 36,744"></div>
+      <div class="hourly-bar" style="height: 89.2%" title="17:00 - 32,769"></div>
+      <div class="hourly-bar" style="height: 65.4%" title="18:00 - 24,032"></div>
+      <div class="hourly-bar" style="height: 66.4%" title="19:00 - 24,417"></div>
+      <div class="hourly-bar" style="height: 65.3%" title="20:00 - 23,986"></div>
+      <div class="hourly-bar" style="height: 83.7%" title="21:00 - 30,742"></div>
+      <div class="hourly-bar" style="height: 85.1%" title="22:00 - 31,281"></div>
+      <div class="hourly-bar" style="height: 62.0%" title="23:00 - 22,778"></div>
+    </div>
+    <div class="hourly-labels">
+      <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+      <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+      <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
+      <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+    </div>
+  </div>
+  <p style="font-size: 0.85rem; color: #666;">Peak activity at 4pm (16:00) with 36,744 requests. Relatively consistent throughout the day with a dip around 2-3am and 6-8pm.</p>
+
+  <h2>Sample URLs by Category</h2>
+
+  <h3>Item Pages (viewing history)</h3>
+  <ul class="sample-urls">
+    <li>/w/index.php?action=history&amp;title=Item:Q1192</li>
+    <li>/w/index.php?action=history&amp;dir=prev&amp;offset=...&amp;title=Item:Q1671</li>
+    <li>/wiki/Item:Q29457</li>
+  </ul>
+
+  <h3>Special:Log (activity logs)</h3>
+  <ul class="sample-urls">
+    <li>/w/index.php?limit=250&amp;offset=20210520220220&amp;title=Special:Log</li>
+    <li>/w/index.php?dir=prev&amp;limit=20&amp;title=Special:Log</li>
+  </ul>
+
+  <h3>Special:WhatLinksHere (backlinks)</h3>
+  <ul class="sample-urls">
+    <li>/w/index.php?limit=500&amp;title=Special:WhatLinksHere/Item:Q2013</li>
+    <li>/w/index.php?dir=prev&amp;offset=120|2970&amp;title=Special:WhatLinksHere/Item:Q2013</li>
+  </ul>
+
+  <h3>Special:EntityData (structured data)</h3>
+  <ul class="sample-urls">
+    <li>/wiki/Special:EntityData/Q29457.json</li>
+    <li>/wiki/Special:EntityData/Q29457.n3</li>
+    <li>/wiki/Special:EntityData/Q29457.rdf</li>
+  </ul>
+
+  <div class="insight">
+    <div class="insight-title">Crawling Pattern</div>
+    GPTBot appears to be systematically exploring the Wikibase knowledge graph by:
+    <ol style="margin-top: 0.5rem; padding-left: 1.25rem;">
+      <li>Fetching item pages and their edit histories</li>
+      <li>Following "What Links Here" to discover related items</li>
+      <li>Checking activity logs to find recently changed items</li>
+      <li>Downloading entity data in multiple RDF formats</li>
+    </ol>
+  </div>
+
+  <p style="margin-top: 2rem; font-size: 0.8rem; color: #888;">
+    Analysis based on 677,400 requests from GPTBot/1.2 over a 14-day period.
+    Data extracted from nginx access logs.
+  </p>
+</body>
+</html>

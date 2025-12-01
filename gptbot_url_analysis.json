@@ -1,0 +1,591 @@
+{
+  "metadata": {
+    "source_file": "GPTBot_access_log",
+    "total_requests": 677400,
+    "total_bytes": 7444759833,
+    "analyzed_at": "2025-11-29T13:41:23.460870"
+  },
+  "summary": {
+    "top_categories": [
+      [
+        "Item pages",
+        371006
+      ],
+      [
+        "Special:Log",
+        129374
+      ],
+      [
+        "Special:WhatLinksHere",
+        74741
+      ],
+      [
+        "Special:EntityData",
+        52453
+      ],
+      [
+        "Property pages",
+        9402
+      ],
+      [
+        "Item talk pages",
+        9052
+      ],
+      [
+        "Special:UserLogin",
+        7954
+      ],
+      [
+        "Entity redirect",
+        6816
+      ],
+      [
+        "Special:RecentChangesLinked",
+        5850
+      ],
+      [
+        "Other wiki pages",
+        4864
+      ],
+      [
+        "Special:NewItem",
+        3152
+      ],
+      [
+        "Other",
+        1577
+      ],
+      [
+        "Homepage",
+        930
+      ],
+      [
+        "Property talk pages",
+        178
+      ],
+      [
+        "Special:ListFiles",
+        12
+      ],
+      [
+        "User pages",
+        7
+      ],
+      [
+        "Special:UserRights",
+        6
+      ],
+      [
+        "Project pages",
+        6
+      ],
+      [
+        "Special:PrefixIndex",
+        6
+      ],
+      [
+        "MediaWiki pages",
+        5
+      ],
+      [
+        "Special:Search",
+        4
+      ],
+      [
+        "Special:Contributions",
+        4
+      ],
+      [
+        "Special:Watchlist",
+        1
+      ]
+    ],
+    "status_codes": {
+      "200": 566075,
+      "301": 74511,
+      "404": 24417,
+      "303": 6851,
+      "302": 4618,
+      "500": 711,
+      "499": 118,
+      "502": 98,
+      "400": 1
+    }
+  },
+  "categories": {
+    "Item pages": {
+      "total_requests": 371006,
+      "percentage": 54.77,
+      "total_bytes": 4851721408,
+      "avg_bytes_per_request": 13077,
+      "subcategories": {
+        "Direct item access": 356984,
+        "Wiki path": 14022
+      },
+      "sample_urls": [
+        "/w/index.php?action=history&offset=20200222191102%7C29598&title=Item:Q1192",
+        "/w/index.php?action=history&offset=20200222191226%7C29618&title=Item:Q1192",
+        "/w/index.php?action=history&dir=prev&offset=20200222214738%7C34095&title=Item:Q1192",
+        "/w/index.php?action=history&dir=prev&offset=20200223200051%7C43585&title=Item:Q1671",
+        "/w/index.php?action=history&dir=prev&offset=20200222214656%7C34085&title=Item:Q1192"
+      ],
+      "unique_entities": 10913,
+      "sample_entities": [
+        "Q17881",
+        "Q9962",
+        "Q13012",
+        "Q12037",
+        "Q15585",
+        "Q8759",
+        "Q26277",
+        "Q10471",
+        "Q6405",
+        "Q4345",
+        "Q15854",
+        "Q4198",
+        "Q15415",
+        "Q13982",
+        "Q13942",
+        "Q6711",
+        "Q4267",
+        "Q9817",
+        "Q17180",
+        "Q6934"
+      ]
+    },
+    "Special:Log": {
+      "total_requests": 129374,
+      "percentage": 19.1,
+      "total_bytes": 1803221143,
+      "avg_bytes_per_request": 13938,
+      "subcategories": {
+        "Log pages": 129368,
+        "Wiki path": 6
+      },
+      "sample_urls": [
+        "/w/index.php?limit=250&offset=20210520220220&title=Special:Log&type=&user=",
+        "/w/index.php?limit=20&offset=20220220202930&title=Special:Log&type=&user=",
+        "/w/index.php?limit=20&offset=20210520220220&title=Special:Log&type=&user=",
+        "/w/index.php?dir=prev&limit=20&offset=20220220201409&title=Special:Log&type=&user=",
+        "/w/index.php?dir=prev&limit=250&offset=20210520220055&title=Special:Log&type=&user="
+      ]
+    },
+    "Special:WhatLinksHere": {
+      "total_requests": 74741,
+      "percentage": 11.03,
+      "total_bytes": 500484535,
+      "avg_bytes_per_request": 6696,
+      "subcategories": {
+        "Item pages": 54362,
+        "Other": 14488,
+        "Direct access": 5253,
+        "Property pages": 638
+      },
+      "sample_urls": [
+        "/w/index.php?limit=500&offset=120%7C3219&title=Special:WhatLinksHere/Item:Q2013",
+        "/w/index.php?limit=500&offset=120%7C2369&title=Special:WhatLinksHere/Item:Q2013",
+        "/w/index.php?limit=250&offset=120%7C3219&title=Special:WhatLinksHere/Item:Q2013",
+        "/w/index.php?limit=250&offset=120%7C2419&title=Special:WhatLinksHere/Item:Q2013",
+        "/w/index.php?dir=prev&offset=120%7C2970&title=Special:WhatLinksHere/Item:Q2013"
+      ],
+      "unique_entities": 7232,
+      "sample_entities": [
+        "Q2147",
+        "Q9962",
+        "Q22128",
+        "Q8759",
+        "Q6405",
+        "Q4345",
+        "Q13942",
+        "Q6711",
+        "Q9817",
+        "Q17180",
+        "Q6934",
+        "Q11088",
+        "Q27108",
+        "Q24624",
+        "Q10898",
+        "Q10350",
+        "Q4805",
+        "Q18736",
+        "Q7546",
+        "Q24177"
+      ]
+    },
+    "Special:EntityData": {
+      "total_requests": 52453,
+      "percentage": 7.74,
+      "total_bytes": 71442453,
+      "avg_bytes_per_request": 1362,
+      "subcategories": {
+        "Format: n3": 11742,
+        "Format: rdf": 8929,
+        "Format: json": 8726,
+        "Format: jsonld": 7424,
+        "Format: nt": 7068,
+        "Default format": 6862,
+        "Format: ttl": 1188,
+        "Format: php": 514
+      },
+      "sample_urls": [
+        "/wiki/Special:EntityData/Q29457.n3",
+        "/wiki/Special:EntityData/Q29457.n3",
+        "/wiki/Special:EntityData/Q29457.rdf",
+        "/wiki/Special:EntityData/Q29457.rdf",
+        "/wiki/Special:EntityData/Q29457.nt"
+      ]
+    },
+    "Property pages": {
+      "total_requests": 9402,
+      "percentage": 1.39,
+      "total_bytes": 56892454,
+      "avg_bytes_per_request": 6051,
+      "subcategories": {
+        "Direct property access": 9264,
+        "Wiki path": 138
+      },
+      "sample_urls": [
+        "/w/index.php?direction=next&oldid=148222&title=Property:P1",
+        "/w/index.php?diff=cur&oldid=61666&title=Property:P68",
+        "/w/index.php?diff=61678&oldid=61666&title=Property:P68",
+        "/w/index.php?diff=next&oldid=92743&title=Property:P68",
+        "/w/index.php?diff=next&oldid=47153&title=Property:P68"
+      ],
+      "unique_entities": 73,
+      "sample_entities": [
+        "P212",
+        "P137",
+        "P119",
+        "P68",
+        "P55",
+        "P81",
+        "P127",
+        "P196",
+        "P181",
+        "P266",
+        "P247",
+        "P202",
+        "P94",
+        "P110",
+        "P93",
+        "P203",
+        "P192",
+        "P264",
+        "P207",
+        "P101"
+      ]
+    },
+    "Item talk pages": {
+      "total_requests": 9052,
+      "percentage": 1.34,
+      "total_bytes": 19052098,
+      "avg_bytes_per_request": 2105,
+      "subcategories": {
+        "Discussion": 9052
+      },
+      "sample_urls": [
+        "/wiki/Item_talk:Q29457",
+        "/wiki/Item_talk:Q29457",
+        "/wiki/Item_talk:Q18562",
+        "/wiki/Item_talk:Q18562",
+        "/wiki/Item_talk:Q19254"
+      ]
+    },
+    "Special:UserLogin": {
+      "total_requests": 7954,
+      "percentage": 1.17,
+      "total_bytes": 33245961,
+      "avg_bytes_per_request": 4180,
+      "subcategories": {
+        "Login attempts": 7954
+      },
+      "sample_urls": [
+        "/w/index.php?returnto=Special%3AWhatLinksHere%2FItem%3AQ2013&returntoquery=dir%3Dnext%26offset%3D120%257C4677&title=Special:UserLogin",
+        "/w/index.php?returnto=Property%3AP207&returntoquery=diff%3Dcur%26oldid%3D151955&title=Special:UserLogin",
+        "/w/index.php?returnto=Property%3AP139&returntoquery=diff%3Dcur%26oldid%3D148375&title=Special:UserLogin",
+        "/w/index.php?returnto=Property%3AP200&returntoquery=diff%3Dcur%26oldid%3D120753&title=Special:UserLogin",
+        "/w/index.php?returnto=Property%3AP206&returntoquery=diff%3Dcur%26oldid%3D151229&title=Special:UserLogin"
+      ]
+    },
+    "Entity redirect": {
+      "total_requests": 6816,
+      "percentage": 1.01,
+      "total_bytes": 1764172,
+      "avg_bytes_per_request": 259,
+      "subcategories": {
+        "Linked data": 6816
+      },
+      "sample_urls": [
+        "/entity/Q29457",
+        "/entity/Q29457",
+        "/entity/Q577",
+        "/entity/Q577",
+        "/entity/Q534"
+      ]
+    },
+    "Special:RecentChangesLinked": {
+      "total_requests": 5850,
+      "percentage": 0.86,
+      "total_bytes": 44811949,
+      "avg_bytes_per_request": 7660,
+      "subcategories": {
+        "Related changes": 5850
+      },
+      "sample_urls": [
+        "/wiki/Special:RecentChangesLinked/Item:Q29457",
+        "/wiki/Special:RecentChangesLinked/Item:Q18562",
+        "/wiki/Special:RecentChangesLinked/Item:Q19254",
+        "/wiki/Special:RecentChangesLinked/Item:Q534",
+        "/wiki/Special:RecentChangesLinked/Item:Q577"
+      ]
+    },
+    "Other wiki pages": {
+      "total_requests": 4864,
+      "percentage": 0.72,
+      "total_bytes": 1349867,
+      "avg_bytes_per_request": 278,
+      "subcategories": {
+        "Via index.php": 4852,
+        "Wiki path": 12
+      },
+      "sample_urls": [
+        "/w/index.php?action=edit&redlink=1&title=MediaWiki_talk:Wikibase-SortedProperties",
+        "/w/index.php?diff=next&oldid=148409&title=Item_talk:Q21217",
+        "/w/index.php?diff=cur&oldid=90937&title=MediaWiki:Wikibase-SortedProperties",
+        "/w/index.php?diff=next&oldid=91210&title=Item_talk:Q21217",
+        "/w/index.php?diff=next&oldid=91207&title=Item_talk:Q21217"
+      ]
+    },
+    "Special:NewItem": {
+      "total_requests": 3152,
+      "percentage": 0.47,
+      "total_bytes": 52657544,
+      "avg_bytes_per_request": 16706,
+      "subcategories": {
+        "New item creation": 3152
+      },
+      "sample_urls": [
+        "/wiki/Special:NewItem?page=Property%3AP77&site=my_wiki",
+        "/wiki/Special:NewItem?page=Property%3AP55&site=my_wiki",
+        "/wiki/Special:NewItem?page=Property%3AP93&site=my_wiki",
+        "/wiki/Special:NewItem?page=Item%3AQ29457&site=my_wiki",
+        "/wiki/Special:NewItem?page=Item%3AQ19118&site=my_wiki"
+      ]
+    },
+    "Other": {
+      "total_requests": 1577,
+      "percentage": 0.23,
+      "total_bytes": 3183309,
+      "avg_bytes_per_request": 2019,
+      "subcategories": {
+        "Uncategorized": 1577
+      },
+      "sample_urls": [
+        "/w/extensions/Wikibase/view/resources/jquery/wikibase/themes/default/images/wb-badges-default.png?34549",
+        "/proxy/wdqs/bigdata/namespace/wdq/sparql?query=select%20%3Fs%20%3FsLabel%20%3Fp%20%3FpropLabel%20%20WHERE%7B%20%09%20%20%3Fs%20%3Fp%20wd%3AQ19470.%09%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%09%20%20FILTER%20(%3Fp%20!%3D%20%3Chttp%3A%2F%2Fbase.semlab.io%2Fprop%2Fdirect%2FP22%3E%20%26%26%20%3Fp%20!%3D%20%3Chttp%3A%2F%2Fbase.semlab.io%2Fprop%2Fdirect%2FP21%3E%20%26%26%20%3Fp%20!%3D%20%3Chttp%3A%2F%2Fbase.semlab.io%2Fprop%2Fdirect%2FP23%3E%20)%09%20%20%3Fprop%20wikibase%3AdirectClaim%20%3Fp%20.%09%7D",
+        "/w/extensions/Wikibase/view/lib/wikibase-data-values-value-view/lib/jquery.ui/images/icons/oojs-ui/close-ltr.png?62a86",
+        "/proxy/wdqs/bigdata/namespace/wdq/sparql?query=select%20%3Fs%20%3FsLabel%20%3Fp%20%3FpropLabel%20%20WHERE%7B%20%09%20%20%3Fs%20%3Fp%20wd%3AQ19254.%09%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%09%20%20FILTER%20(%3Fp%20!%3D%20%3Chttp%3A%2F%2Fbase.semlab.io%2Fprop%2Fdirect%2FP22%3E%20%26%26%20%3Fp%20!%3D%20%3Chttp%3A%2F%2Fbase.semlab.io%2Fprop%2Fdirect%2FP21%3E%20%26%26%20%3Fp%20!%3D%20%3Chttp%3A%2F%2Fbase.semlab.io%2Fprop%2Fdirect%2FP23%3E%20)%09%20%20%3Fprop%20wikibase%3AdirectClaim%20%3Fp%20.%09%7D",
+        "/network/?person=Red_Holloway"
+      ]
+    },
+    "Homepage": {
+      "total_requests": 930,
+      "percentage": 0.14,
+      "total_bytes": 4382346,
+      "avg_bytes_per_request": 4712,
+      "subcategories": {
+        "Root": 930
+      },
+      "sample_urls": [
+        "/?page_id=574",
+        "/?p=574",
+        "/?page_id=574",
+        "/?p=734",
+        "/?tag=code4lib"
+      ]
+    },
+    "Property talk pages": {
+      "total_requests": 178,
+      "percentage": 0.03,
+      "total_bytes": 381162,
+      "avg_bytes_per_request": 2141,
+      "subcategories": {
+        "Discussion": 178
+      },
+      "sample_urls": [
+        "/wiki/Property_talk:Property:Property_talk:P71",
+        "/wiki/Property_talk:P200",
+        "/wiki/Property_talk:P200",
+        "/wiki/Property_talk:P206",
+        "/wiki/Property_talk:P206"
+      ]
+    },
+    "Special:ListFiles": {
+      "total_requests": 12,
+      "percentage": 0.0,
+      "total_bytes": 59133,
+      "avg_bytes_per_request": 4928,
+      "subcategories": {
+        "Other special": 9,
+        "Wiki path": 3
+      },
+      "sample_urls": [
+        "/wiki/Special:ListFiles/TestAccount",
+        "/wiki/Special:ListFiles/TestAccount",
+        "/wiki/Special:ListFiles/TestAccount",
+        "/w/index.php?limit=50&sort=img_size&title=Special:ListFiles&user=TestAccount",
+        "/w/index.php?limit=50&sort=img_name&title=Special:ListFiles&user=TestAccount"
+      ]
+    },
+    "User pages": {
+      "total_requests": 7,
+      "percentage": 0.0,
+      "total_bytes": 16947,
+      "avg_bytes_per_request": 2421,
+      "subcategories": {
+        "User talk": 5,
+        "User/talk pages": 2
+      },
+      "sample_urls": [
+        "/w/index.php?action=edit&redlink=1&title=User_talk:ZBlock",
+        "/wiki/User_talk:ZBlock",
+        "/wiki/User_talk:ZBlock",
+        "/wiki/User_talk:ZBlock",
+        "/wiki/User_talk:ZBlock"
+      ]
+    },
+    "Special:UserRights": {
+      "total_requests": 6,
+      "percentage": 0.0,
+      "total_bytes": 17272,
+      "avg_bytes_per_request": 2879,
+      "subcategories": {
+        "Wiki path": 6
+      },
+      "sample_urls": [
+        "/wiki/Special:UserRights/ZBlock",
+        "/wiki/Special:UserRights/ZBlock",
+        "/wiki/Special:UserRights/ZBlock",
+        "/wiki/Special:UserRights/TestAccount",
+        "/wiki/Special:UserRights/TestAccount"
+      ]
+    },
+    "Project pages": {
+      "total_requests": 6,
+      "percentage": 0.0,
+      "total_bytes": 12679,
+      "avg_bytes_per_request": 2113,
+      "subcategories": {
+        "Project namespace": 6
+      },
+      "sample_urls": [
+        "/wiki/Project:Administrators",
+        "/wiki/Project:Administrators",
+        "/wiki/Project:Bots",
+        "/wiki/Project:Bots",
+        "/wiki/Project:Bureaucrats"
+      ]
+    },
+    "Special:PrefixIndex": {
+      "total_requests": 6,
+      "percentage": 0.0,
+      "total_bytes": 19730,
+      "avg_bytes_per_request": 3288,
+      "subcategories": {
+        "Wiki path": 6
+      },
+      "sample_urls": [
+        "/wiki/Special:PrefixIndex/User_talk:ZBlock/",
+        "/wiki/Special:PrefixIndex/User_talk:ZBlock/",
+        "/wiki/Special:PrefixIndex/User_talk:ZBlock/",
+        "/wiki/Special:PrefixIndex/MediaWiki:Wikibase-SortedProperties/",
+        "/wiki/Special:PrefixIndex/MediaWiki:Wikibase-SortedProperties/"
+      ]
+    },
+    "MediaWiki pages": {
+      "total_requests": 5,
+      "percentage": 0.0,
+      "total_bytes": 13788,
+      "avg_bytes_per_request": 2758,
+      "subcategories": {
+        "System messages": 5
+      },
+      "sample_urls": [
+        "/wiki/MediaWiki_talk:Wikibase-SortedProperties",
+        "/wiki/MediaWiki_talk:Wikibase-SortedProperties",
+        "/wiki/MediaWiki:Wikibase-SortedProperties",
+        "/wiki/MediaWiki:Wikibase-SortedProperties",
+        "/wiki/MediaWiki:Wikibase-SortedProperties"
+      ]
+    },
+    "Special:Search": {
+      "total_requests": 4,
+      "percentage": 0.0,
+      "total_bytes": 9795,
+      "avg_bytes_per_request": 2449,
+      "subcategories": {
+        "Search queries": 3,
+        "Wiki path": 1
+      },
+      "sample_urls": [
+        "/wiki/Special:Search/ZBlock",
+        "/w/index.php?title=Special:Search&search=ZBlock",
+        "/w/index.php?title=Special:Search&search=ZBlock",
+        "/w/index.php?search=ZBlock&title=Special:Search"
+      ]
+    },
+    "Special:Contributions": {
+      "total_requests": 4,
+      "percentage": 0.0,
+      "total_bytes": 20088,
+      "avg_bytes_per_request": 5022,
+      "subcategories": {
+        "Wiki path": 4
+      },
+      "sample_urls": [
+        "/wiki/Special:Contributions/MediaWiki_default",
+        "/wiki/Special:Contributions/TestAccount",
+        "/wiki/Special:Contributions/TestAccount",
+        "/wiki/Special:Contributions/TestAccount"
+      ]
+    },
+    "Special:Watchlist": {
+      "total_requests": 1,
+      "percentage": 0.0,
+      "total_bytes": 0,
+      "avg_bytes_per_request": 0,
+      "subcategories": {
+        "Wiki path": 1
+      },
+      "sample_urls": [
+        "/wiki/Special:Watchlist"
+      ]
+    }
+  },
+  "hourly_distribution": {
+    "0": 22276,
+    "1": 23125,
+    "2": 21236,
+    "3": 24365,
+    "4": 28534,
+    "5": 28308,
+    "6": 34640,
+    "7": 31646,
+    "8": 27045,
+    "9": 27820,
+    "10": 27998,
+    "11": 26736,
+    "12": 30637,
+    "13": 31642,
+    "14": 32402,
+    "15": 32241,
+    "16": 36744,
+    "17": 32769,
+    "18": 24032,
+    "19": 24417,
+    "20": 23986,
+    "21": 30742,
+    "22": 31281,
+    "23": 22778
+  }
+}
