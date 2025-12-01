@@ -2,6 +2,8 @@
 
 Nginx access log analysis toolkit with visualizations for analyzing bot traffic, geographic distribution, and request patterns.
 
+Blog Post: https://semlab.io/blog/ai-scrapers-vs-wikibase.html
+
 ## Directory Structure
 
 ```
